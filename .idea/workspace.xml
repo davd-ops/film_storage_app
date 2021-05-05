@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="969137c1-bd33-44dc-9f62-5c3cb2604e21" name="Default Changelist" comment="" />
+    <list default="true" id="969137c1-bd33-44dc-9f62-5c3cb2604e21" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ApiQuery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EduSystem-Bany-Psencik/index.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EduSystem-Bany-Psencik" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -32,7 +36,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620060663578</updated>
-      <workItem from="1620060664690" duration="1135000" />
+      <workItem from="1620060664690" duration="5860000" />
+      <workItem from="1620237586112" duration="693000" />
     </task>
     <servers />
   </component>
@@ -40,9 +45,17 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="384" y="223" key="FileChooserDialogImpl" timestamp="1620061104306">
+    <state x="384" y="223" key="FileChooserDialogImpl" timestamp="1620237660907">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="384" y="223" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620061104306" />
+    <state x="384" y="223" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620237660907" />
+    <state x="420" y="191" key="NewPhpClassDialog" timestamp="1620062764470">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="420" y="191" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1620062764470" />
+    <state x="439" y="392" key="NewPhpFileDialog" timestamp="1620062742258">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="439" y="392" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1620062742258" />
   </component>
 </project>
