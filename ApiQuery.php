@@ -32,9 +32,19 @@ class ApiQuery
             echo "cURL Error #:" . $err;
         } else {
             $json = json_decode($response);
-            foreach ($json->Search as $item) {
-                echo $item->Title . "<br>";
-            }
+            ?>
+            <div class="container" id="movie_container"> <?php
+                foreach ($json->Search as $item) {
+                    if ($item->Type == "movie" || $item->Type == "series") {
+                        ?>
+                        <div id="<?php echo $item->imdbID ?>" class="movie_item" onClick="fetchApi(this.id)">
+                            <img class="center" src="<?php echo $item->Poster ?>">
+                            <h1 class="center"><?php echo $item->Title ?></h1>
+                        </div>
+                        <?php
+                    }
+                }
+                ?> </div> <?php
         }
     }
 }
