@@ -37,9 +37,11 @@ class ApiQuery
                 foreach ($json->Search as $item) {
                     if ($item->Type == "movie" || $item->Type == "series") {
                         ?>
-                        <div id="<?php echo $item->imdbID ?>" class="movie_item" onClick="fetchApi(this.id)">
-                            <img class="center" src="<?php echo $item->Poster ?>">
-                            <h1 class="center"><?php echo $item->Title ?></h1>
+                        <div id="<?php echo $item->imdbID ?>" class="movie_item gallery" onClick="fetchApi(this.id)">
+                            <div class="gallery-item">
+                                <img class="center" src="<?php echo $item->Poster ?>">
+                                <h1 class="center"><?php echo $item->Title ?></h1>
+                            </div>
                         </div>
                         <?php
                     }

@@ -10,6 +10,7 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -52,14 +53,14 @@ a {
 
 .movie_item {
     width: 25%;
-    outline: 3px solid red;
     outline-offset: 0;
 }
 
 .movie_item h1 {
     font-size: 20px;
+    text-align: center;
     padding: 0 38px;
-    color: black;
+    color: #fffa;
     height: 67px;
 }
 
@@ -71,7 +72,6 @@ a {
 }
 
 .movie_item img {
-    padding: 38px 38px 0;
     height: 450px;
     width: 300px;
 }
@@ -80,7 +80,7 @@ a {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    margin-top: 60px;
+    margin-top: 3%;
 }
 
 .center {
@@ -111,6 +111,7 @@ a {
     color: white;
     left: 10%;
     right: 10%;
+    top: 12%;
     text-align: left;
     background-image: linear-gradient(147deg, #000000 0%, #333333 19%);
 }
@@ -165,8 +166,8 @@ a {
 }
 
 .lead {
-    margin-top: 35px;
-    margin-bottom: 35px;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
     font-family: 'Quicksand', serif;
 }
 
@@ -226,3 +227,73 @@ a {
     color: #faa;
     box-shadow: 0 50px 5px rgba(0, 0, 0, 0.15) inset;
 }
+
+.hello {
+    opacity: 1 !important;
+}
+.full {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.full .content {
+    background-color: rgba(0,0,0,0.75) !important;
+    height: 100%;
+    width: 100%;
+    display: grid;
+}
+.full .content img {
+    left: 50%;
+    transform: translate3d(0, 0, 0);
+    animation: zoomin 1s ease;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+.byebye {
+    opacity: 0;
+}
+.byebye:hover {
+    transform: scale(0.2) !important;
+}
+
+.gallery img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 16px #333;
+    transition: all 1.5s ease;
+}
+
+.gallery img:hover {
+    box-shadow: 0 0 32px #333;
+}
+
+.gallery .content {
+    padding: 4px;
+}
+
+.gallery .gallery-item {
+    transition: grid-row-start 300ms linear;
+    transition: transform 300ms ease;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.gallery .gallery-item:hover {
+    transform: scale(1.025);
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    }
+}
+@media (max-width: 400px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    }
+}
+

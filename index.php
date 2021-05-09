@@ -26,7 +26,7 @@ require_once ("ApiQuery.php");
         <ul class="slider-menu">
             <a href="index.php">Search</a>
             <a>Profile</a>
-            <a>Starred</a>
+            <a>Favorite</a>
             <a href="logout.php">Log out</a>
         </ul>
     </div>
