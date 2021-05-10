@@ -11,6 +11,7 @@ body {
     -ms-user-select: none;
     user-select: none;
     overflow-x: hidden;
+    overflow-y: visible;
 }
 
 h1 {
@@ -23,7 +24,7 @@ a {
 }
 
 .search {
-    height: 63vh;
+    height: 100%;
 }
 
 .search h1{
@@ -42,6 +43,10 @@ a {
 
 .search input:focus {
     outline: none;
+}
+
+.full-height-section {
+    height: 100vh;
 }
 
 #submit {
@@ -284,6 +289,66 @@ a {
 
 .gallery .gallery-item:hover {
     transform: scale(1.025);
+}
+
+.profile_forms {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 70%;
+    justify-content: center;
+}
+
+.profile_forms h1{
+    font-size: 28px;
+}
+
+.profile_forms form{
+    margin-left: auto;
+    margin-top: 4%;
+    width: 40%;
+    float: left;
+}
+
+.profile_forms input, .contact_us input{
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: 0;
+}
+
+.contact_us {
+    width: 50%;
+    text-align: center;
+    margin: 25px auto 60px;
+}
+
+#contact_us_h1 {
+    font-size: 40px;
+}
+
+.contact_us h1 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 30px;
+}
+
+#contact_submit {
+    margin-top: 25px;
+    padding: 3px;
+    width: 60%;
+    font-size: 25px;
+}
+
+.submit_btn {
+    margin-left: 0;
+    font-size: 24px;
+    padding: 0 52px;
+    width: 255px;
+}
+
+#profile_body {
+    overflow: hidden;
 }
 
 @media (max-width: 600px) {

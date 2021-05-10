@@ -25,8 +25,8 @@ require_once ("ApiQuery.php");
         <h1 class="logo">C</h1>
         <ul class="slider-menu">
             <a href="index.php">Search</a>
-            <a>Profile</a>
-            <a>Favorite</a>
+            <a href="profile.php">Profile</a>
+            <a href="favorite.php">Favorite</a>
             <a href="logout.php">Log out</a>
         </ul>
     </div>
@@ -52,22 +52,29 @@ require_once ("ApiQuery.php");
 </div>
 
 <?php
-if (isset($_REQUEST['title'])) {
-    $title = str_replace(' ', '%20', $_REQUEST['title']);
+if (isset($_POST['title'])) {
+    $title = str_replace(' ', '%20', $_POST['title']);
     $query = new ApiQuery();
     $query->callApi($title);
+    ?>
+    <script>
+        document.getElementById("body").style.overflowY = "visible";
+    </script>
+    <?php
 } else {
 ?>
-    <form action="" method="post" class="search">
-        <h1>Enter movie or series title</h1>
-        <input class="center" type="text" name="title" placeholder="..." required/>
-        <input class="center" id="submit" type="submit" name="submit" value="Submit">
-    </form>
+    <div class="full-height-section">
+        <form action="" method="post" class="search">
+            <h1>Enter movie or series title</h1>
+            <input class="center" type="text" name="title" placeholder="..." required/>
+            <input class="center" id="submit" type="submit" name="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        document.getElementById("body").style.overflowY = "hidden";
+    </script>
 <?php
 }
-
-
-
 ?>
 
 </body>
