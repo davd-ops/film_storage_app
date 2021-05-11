@@ -36,7 +36,9 @@ require_once ("ApiQuery.php");
     <div class="movie_view_left">
         <p id="year"></p>
         <p id="runtime"></p>
-        <h1 id="title">Movie name</h1>
+        <img id="star1" src="images/star2.png" alt="Mark as favorite" onclick="makeFavorite();">
+        <img id="star2" src="images/star.png" alt="Unmark as favorite" onclick="makeFavorite();">
+        <h1 id="title"></h1>
         <div class="movie_view_inner_first">
             <p id="plot"></p>
         </div>
