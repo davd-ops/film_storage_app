@@ -1,5 +1,7 @@
 let movie_array = [];
 let favorite_movies = [];
+let ajaxRequest;
+let ajaxResponseJson = [];
 
 //fetching data from imdb API
 function fetchApi(_id){
@@ -46,7 +48,15 @@ function loadExtendedData(_id){
         for (let i = 0; i < movie_array.length; i++){
             if (movie_array[i].id === _id){
                 createMovieInformation(
-                    movie_array[i].Title, movie_array[i].Type, movie_array[i].Year, movie_array[i].Runtime, movie_array[i].Plot, movie_array[i].Actors, movie_array[i].Poster, movie_array[i].Director, movie_array[i].Genre
+                    movie_array[i].Title,
+                    movie_array[i].Type,
+                    movie_array[i].Year,
+                    movie_array[i].Runtime,
+                    movie_array[i].Plot,
+                    movie_array[i].Actors,
+                    movie_array[i].Poster,
+                    movie_array[i].Director,
+                    movie_array[i].Genre
                 );
                 is_found = true;
             }
@@ -59,15 +69,11 @@ function loadExtendedData(_id){
     }
 }
 
-//getting "movie_array" from the localstorage
-function getFavoriteMoviesArrayFromLocalstorage() {
-    return JSON.parse(localStorage.getItem('favorite_movies'));
+//getting favorite movies
+function getFavoriteMoviesArray() {
+    return ajaxResponseJson;
 }
 
-//uploading "movie_array" to the localstorage
-function setFavoriteMoviesArrayInLocalstorage(_favorite_movies) {
-    localStorage.setItem('favorite_movies', JSON.stringify(_favorite_movies));
-}
 
 //creating view with extended informations
 function createMovieInformation (_title, _type, _year, _runtime, _plot, _actors, _poster, _director, _genre) {
@@ -94,10 +100,7 @@ function createMovieInformation (_title, _type, _year, _runtime, _plot, _actors,
     actors.innerHTML = "<span class='darker_text'>Cast: </span><b>" + _actors + "</b>";
     director.innerHTML = "<span class='darker_text'>Directed by: </span><b>" + _director + "</b>";
     genre.innerHTML = "<span class='darker_text'>Genres: </span><b>" + _genre + "</b>";
-    if (localStorage.getItem('favorite_movies') !== null) {
-        favorite_movies = getFavoriteMoviesArrayFromLocalstorage();
-    }
-    checkIsFavorite(year, title);
+    selectFromDatabase();
 }
 
 //hiding extended view
@@ -118,9 +121,7 @@ function makeFavorite(){
     const title = document.getElementById("title");
     const year = document.getElementById("year");
 
-    if (localStorage.getItem('favorite_movies') !== null) {
-        favorite_movies = getFavoriteMoviesArrayFromLocalstorage();
-    }
+    favorite_movies = getFavoriteMoviesArray();
 
     for (let i = 0; i < movie_array.length; i++){
         if (movie_array[i].Title === title.innerText && movie_array[i].Year === year.innerText){
@@ -128,35 +129,43 @@ function makeFavorite(){
                 star1.style.display = "none";
                 star2.style.display = "block";
                 favorite_movies.push(movie_array[i]);
+                insertIntoDatabase(
+                    movie_array[i].id,
+                    movie_array[i].Title,
+                    movie_array[i].Type,
+                    movie_array[i].Year,
+                    movie_array[i].Runtime,
+                    movie_array[i].Plot,
+                    movie_array[i].Actors,
+                    movie_array[i].Poster,
+                    movie_array[i].Director,
+                    movie_array[i].Genre
+                );
             } else {
                 star1.style.display = "block";
                 star2.style.display = "none";
-                console.log(favorite_movies);
-                if (favorite_movies.length === 1){
-                    favorite_movies.pop();
-                } else{
-                    favorite_movies.splice(i,1);
-                }
-
-                console.log(favorite_movies);
+                deleteFromDatabase(movie_array[i].id);
             }
         }
-        setFavoriteMoviesArrayInLocalstorage(favorite_movies);
     }
 }
 
 //check if the movie is in favorite array
-function checkIsFavorite(_year, _title){
+function checkIsFavorite(){
     const star1 = document.getElementById("star1");
     const star2 = document.getElementById("star2");
+    const title = document.getElementById("title");
+    const year = document.getElementById("year");
 
+    favorite_movies = getFavoriteMoviesArray();
     const is_favorite = () => {
         for (let i = 0; i < favorite_movies.length; i++){
-            if (favorite_movies[i].Title === _title.innerText && favorite_movies[i].Year === _year.innerText){
+            if (favorite_movies[i].title === title.innerText && favorite_movies[i].year === year.innerText){
                 return true;
             }
         }
     }
+    //if is in favorite movies => show the filled star
     if (is_favorite()){
         star1.style.display = "none";
         star2.style.display = "block";
@@ -165,3 +174,59 @@ function checkIsFavorite(_year, _title){
         star2.style.display = "none";
     }
 }
+
+//setting up ajax and getting back the response
+function setUpAjax(){
+    try{
+        ajaxRequest = new XMLHttpRequest();
+    } catch (e){
+        try{
+            ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try{
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e){
+                alert("Browser Not Supported");
+                return false;
+            }
+        }
+    }
+    //get response
+    ajaxRequest.onreadystatechange = function(){
+        if(ajaxRequest.readyState === 4){
+            ajaxResponseJson = JSON.parse(ajaxRequest.responseText);
+            checkIsFavorite();
+        }
+    }
+}
+
+//selecting all favorite movies from database
+function selectFromDatabase(){
+    setUpAjax();
+
+    ajaxRequest.open("POST", "process_ajax.php", true);
+    ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajaxRequest.send("select="+encodeURIComponent(1));
+}
+
+//inserting new favorite movies into the database
+function insertIntoDatabase(_id, _title, _type, _year, _runtime, _plot, _actors, _poster, _director, _genre){
+    setUpAjax();
+
+    ajaxRequest.open("POST", "process_ajax.php", true);
+    ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajaxRequest.send("id="+encodeURIComponent(_id)+"&title="+encodeURIComponent(_title)
+        +"&type="+encodeURIComponent(_type)+"&year="+encodeURIComponent(_year)+"&runtime="+encodeURIComponent(_runtime)
+        +"&plot="+encodeURIComponent(_plot)+"&actors="+encodeURIComponent(_actors)+"&poster="+encodeURIComponent(_poster)
+        +"&director="+encodeURIComponent(_director)+"&genre="+encodeURIComponent(_genre));
+}
+
+//deleting favorite movies from database
+function deleteFromDatabase(_id){
+    setUpAjax();
+
+    ajaxRequest.open("POST", "process_ajax.php", true);
+    ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajaxRequest.send("id="+encodeURIComponent(_id)+"&delete="+encodeURIComponent(1));
+}
+
