@@ -4,7 +4,7 @@ require_once('db.php');
 
 
 if (isset($_POST['title'])){
-        $sql = 'INSERT INTO favorite_movies (id, title, type, year, runtime, plot, actors, poster, director, genre) VALUES (:id, :title, :type, :year, :runtime, :plot, :actors, :poster, :director, :genre)';
+        $sql = 'INSERT INTO favorite_movies (id, title, type, year, runtime, plot, actors, poster, director, genre, user) VALUES (:id, :title, :type, :year, :runtime, :plot, :actors, :poster, :director, :genre, :user)';
         $statement = $pdo->prepare($sql);
         $statement->execute([
             'id' => $_POST['id'],
