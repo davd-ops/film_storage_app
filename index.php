@@ -78,6 +78,10 @@ if (isset($_POST['title'])) {
 <?php
 }
 ?>
-
+<script>
+    if(document.querySelectorAll('.movie_item:not([style*="display:none"]):not([style*="display: none"])').length === 0){
+        document.getElementById("body").style.overflowY = "hidden";
+    }
+</script>
 </body>
 </html>

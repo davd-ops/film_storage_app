@@ -414,11 +414,148 @@ a {
     overflow-y: hidden;
 }
 
+.doesnt_exist {
+    margin-bottom: 100%;
+}
+
+@media (max-width: 1000px) {
+
+    .search h1 {
+        margin-top: 25%;
+        font-size: 40px;
+    }
+
+    .search input {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    #submit {
+        font-size: 20px;
+    }
+
+    .lead {
+        margin-top: 4.5%;
+        margin-bottom: 4.5%;
+    }
+
+    .login-title {
+        font-size: 35px;
+    }
+
+    .login-form {
+        margin-top: 40%;
+    }
+
+    .login-form input {
+        font-size: 27px;
+    }
+
+    .profile_forms h1 {
+        font-size: 14px;
+    }
+
+    .profile_forms {
+        width: 90%;
+    }
+
+    .profile_forms input, .contact_us input {
+        font-size: 10px;
+    }
+
+    .profile_forms form {
+        margin-top: 15%;
+    }
+
+    .submit_btn {
+        padding: 0;
+        width: 121px;
+    }
+
+    #contact_us_h1 {
+        font-size: 35px;
+    }
+
+    .contact_us h1 {
+        font-size: 20px;
+    }
+
+    #contact_submit {
+        width: 70%;
+        font-size: 19px;
+    }
+
+    .contact_us {
+        width: 100%;
+    }
+
+    .header-bar > .logo {
+        display: none;
+    }
+
+    .slider-menu > a {
+        padding: 15px 14px 4px 4px;
+    }
+
+    .gallery img {
+        width: 100px;
+    }
+
+    .movie_item {
+        width: 33%;
+    }
+
+    .movie_item img {
+        height: 140px;
+    }
+
+    .movie_item h1 {
+        font-size: 11px;
+        padding: 0 4px;
+    }
+
+    .container {
+        margin-top: 15%;
+    }
+
+    .movie_view {
+        top: 8%;
+        padding-left: 15px;
+    }
+
+    .movie_view_left {
+        width: 100%;
+    }
+
+    #title {
+        margin-top: 30%;
+        font-size: 25px;
+    }
+
+    #year, #runtime {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    #plot {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+    }
+
+    .movie_view_right {
+        display: none;
+    }
+}
+
 @media (max-width: 600px) {
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     }
 }
+
 @media (max-width: 400px) {
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));

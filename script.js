@@ -166,7 +166,7 @@ function deleteFromFavorite(){
                             fav_movies[i].parentElement.parentElement.style.display = "none";
                             document.getElementById("movie_view").style.display = "none";
                             if(document.querySelectorAll('.movie_item:not([style*="display:none"]):not([style*="display: none"])').length <= 4){
-                                document.getElementById("movie_container").style.marginBottom = "30%";
+                                document.getElementById("movie_container").style.marginBottom = "100%";
                                 document.getElementById("body").style.overflow = "hidden";
                             }
                         }

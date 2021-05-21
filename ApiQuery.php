@@ -33,19 +33,25 @@ class ApiQuery
             $json = json_decode($response);
             ?>
             <div class="container" id="movie_container"> <?php
-                foreach ($json->Search as $item) {
-                    if ($item->Type == "movie" || $item->Type == "series") {
-                        ?>
-                        <div id="<?php echo $item->imdbID ?>" class="movie_item gallery" onClick="loadExtendedData(this.id);">
-                            <div class="gallery-item">
-                                <img class="center" src="<?php echo $item->Poster ?>">
-                                <h1 class="center"><?php echo $item->Title ?></h1>
+                if (isset($json->Search)){
+                    foreach ($json->Search as $item) {
+                        if ($item->Type == "movie" || $item->Type == "series") {
+                            ?>
+                            <div id="<?php echo $item->imdbID ?>" class="movie_item gallery" onClick="loadExtendedData(this.id);">
+                                <div class="gallery-item">
+                                    <img class="center" src="<?php echo $item->Poster ?>">
+                                    <h1 class="center"><?php echo $item->Title ?></h1>
+                                </div>
                             </div>
-                        </div>
-                        <?php
+                            <?php
+                        }
                     }
+                } else {
+                    ?><h1 class="center doesnt_exist"><?php echo "This movie doesn't exist"; ?></h1><?php
                 }
                 ?> </div> <?php
         }
     }
 }
+?>
+

@@ -80,15 +80,15 @@ require_once('db.php');
         if ($post->type == "movie" || $post->type == "series") {
             ?>
             <div id="<?php echo $post->id ?>" class="movie_item gallery" onClick="createMovieInformation(
-                    '<?php echo $post->title ?>',
-                    '<?php echo $post->type; ?>',
-                    '<?php echo $post->year; ?>',
-                    '<?php echo $post->runtime; ?>',
+                    `<?php echo $post->title; ?>`,
+                    `<?php echo $post->type; ?>`,
+                    `<?php echo $post->year; ?>`,
+                    `<?php echo $post->runtime; ?>`,
                     `<?php echo $post->plot; ?>`,
-                    '<?php echo $post->actors; ?>',
-                    '<?php echo $post->poster; ?>',
-                    '<?php echo $post->director; ?>',
-                    '<?php echo $post->genre; ?>'
+                    `<?php echo $post->actors; ?>`,
+                    `<?php echo $post->poster; ?>`,
+                    `<?php echo $post->director; ?>`,
+                    `<?php echo $post->genre; ?>`
             );">
                 <div class="gallery-item">
                     <img class="center" src="<?php echo $post->poster ?>">
@@ -102,10 +102,10 @@ require_once('db.php');
 
 <script>
     if(document.querySelectorAll('.movie_item').length <= 4){
-        document.getElementById("movie_container").style.marginBottom = "30%";
+        document.getElementById("movie_container").style.marginBottom = "140%";
         document.getElementById("body").style.overflow = "hidden";
     } else {
-        document.getElementById("movie_container").style.marginBottom = "1%";
+        document.getElementById("movie_container").style.marginBottom = "15%";
     }
 </script>
 
