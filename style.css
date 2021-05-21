@@ -379,6 +379,25 @@ a {
     margin-top: 7%;
 }
 
+.center_hor_and_ver {
+    width: 1000px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -500px;
+    font-size: 0;
+}
+
+.center_hor_and_ver h3{
+    font-size: 70px;
+}
+
+.center_hor_and_ver p{
+    font-size: 45px;
+    margin-top: 0;
+}
+
 .link {
     text-align: center;
     font-size: 25px;

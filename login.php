@@ -28,9 +28,9 @@ if (isset($_POST['username'])) {
         header("Location: index.php");
     } else {
         echo "
-                <div class='form'>
+                <div class='center_hor_and_ver'>
                   <h3 class='link'>Incorrect Username/password.</h3><br/>
-                  <p class='link'><a href='login.php'>Click here to login again.</a></p>
+                  <p class='link'><a href='login.php'>Click <u>here</u> to login again.</a></p>
                 </div>
              ";
     }

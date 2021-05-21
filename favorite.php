@@ -54,9 +54,11 @@ require_once('db.php');
 </div>
 
 <div class="container" id="movie_container"> <?php
-    $sql = 'SELECT * FROM favorite_movies';
+    $sql = 'SELECT * FROM favorite_movies WHERE user = :user';
     $statement = $pdo->prepare($sql);
-    $statement->execute();
+    $statement->execute([
+        'user' => $_SESSION['username']
+    ]);
     $posts = $statement->fetchAll();
 
     $favorite_movies = array();

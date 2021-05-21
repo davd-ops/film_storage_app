@@ -31,33 +31,33 @@ if (isset($_REQUEST['username'])) {
         if (!empty($_REQUEST['username']) && !empty($_REQUEST['email']) && !empty($_REQUEST['password'])) {
             if (strlen($_REQUEST['password']) < 8){
                 echo "
-                <div class='form'>
+                <div class='center_hor_and_ver'>
                 <h3>Password must be atleast 8 characters long.</h3><br/>
-                <p class='link'><a href='registration.php'>Click here to register again.</a></p>
+                <p class='link'><a href='registration.php'>Click <u>here</u> to register again.</a></p>
                 </div>
              ";
             }else {
                 $statement->execute(['username' => $username,'email' => $email,'password' => md5($password), 'create_datetime' => $create_datetime]);
                 echo "
-                <div class='form'>
+                <div class='center_hor_and_ver'>
                     <h3 class='link'>You are registered successfully.</h3><br/>
-                    <p class='link'><a href='login.php'>Click here to login.</a></p>
+                    <p class='link'><a href='login.php'>Click <u>here</u> to login.</a></p>
                 </div>
              ";
             }
         } else {
             echo "
-                <div class='form'>
+                <div class='center_hor_and_ver'>
                 <h3 class='link'>Required fields are missing.</h3><br/>
-                <p class='link'><a href='registration.php'>Click here to register again.</a></p>
+                <p class='link'><a href='registration.php'>Click <u>here</u> to register again.</a></p>
                 </div>
              ";
         }
     }else{
         echo "
-                <div class='form'>
+                <div class='center_hor_and_ver'>
                 <h3 class='link'>This name is already taken.</h3><br/>
-                <p class='link'><a href='registration.php'>Click here to register again.</a></p>
+                <p class='link'><a href='registration.php'>Click <u>here</u> to register again.</a></p>
                 </div>
              ";
     }
