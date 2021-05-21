@@ -1,7 +1,6 @@
 let movie_array = [];
 let favorite_movies = [];
 let ajaxRequest;
-let ajaxResponseJson;
 
 //fetching data from imdb API
 function fetchApi(_id){
@@ -67,11 +66,6 @@ function loadExtendedData(_id){
     } else {
         fetchApi(_id);
     }
-}
-
-//getting favorite movies
-function getFavoriteMoviesArray() {
-    return ajaxResponseJson;
 }
 
 //creating view with extended informations

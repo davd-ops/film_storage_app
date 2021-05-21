@@ -316,7 +316,7 @@ a {
 
 .profile_forms form{
     margin-left: auto;
-    margin-top: 12%;
+    margin-top: 8%;
     width: 40%;
     float: left;
 }
@@ -382,6 +382,7 @@ a {
 .link {
     text-align: center;
     font-size: 25px;
+    color: white;
 }
 
 #login-body {

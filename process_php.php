@@ -16,7 +16,8 @@ if (isset($_POST['title'])){
             'actors' => $_POST['actors'],
             'poster' => $_POST['poster'],
             'director' => $_POST['director'],
-            'genre' => $_POST['genre']
+            'genre' => $_POST['genre'],
+            'user' => $_SESSION['username']
         ]);
         $user = $statement->fetch();
 
@@ -35,9 +36,11 @@ if (isset($_POST['title'])){
     }
 
     if (isset($_POST['select'])){
-        $sql = 'SELECT * FROM favorite_movies';
+        $sql = 'SELECT * FROM favorite_movies WHERE user = :user';
         $statement = $pdo->prepare($sql);
-        $statement->execute();
+        $statement->execute([
+            'user' => $_SESSION['username']
+        ]);
         $posts = $statement->fetchAll();
 
         $favorite_movies = array();
@@ -53,7 +56,7 @@ if (isset($_POST['title'])){
                 'actors' => $post->actors,
                 'poster' => $post->poster,
                 'director' => $post->director,
-                'genre' => $post->genre
+                'genre' => $post->genre,
             ]);
         }
 

@@ -33,31 +33,31 @@ if (isset($_REQUEST['username'])) {
                 echo "
                 <div class='form'>
                 <h3>Password must be atleast 8 characters long.</h3><br/>
-                <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                <p class='link'><a href='registration.php'>Click here to register again.</a></p>
                 </div>
              ";
             }else {
                 $statement->execute(['username' => $username,'email' => $email,'password' => md5($password), 'create_datetime' => $create_datetime]);
                 echo "
                 <div class='form'>
-                    <h3>You are registered successfully.</h3><br/>
-                    <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                    <h3 class='link'>You are registered successfully.</h3><br/>
+                    <p class='link'><a href='login.php'>Click here to login.</a></p>
                 </div>
              ";
             }
         } else {
             echo "
                 <div class='form'>
-                <h3>Required fields are missing.</h3><br/>
-                <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                <h3 class='link'>Required fields are missing.</h3><br/>
+                <p class='link'><a href='registration.php'>Click here to register again.</a></p>
                 </div>
              ";
         }
     }else{
         echo "
                 <div class='form'>
-                <h3>This name is already taken.</h3><br/>
-                <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                <h3 class='link'>This name is already taken.</h3><br/>
+                <p class='link'><a href='registration.php'>Click here to register again.</a></p>
                 </div>
              ";
     }
