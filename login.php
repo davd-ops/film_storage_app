@@ -9,7 +9,7 @@
     <script src="script.js" type="text/javascript"></script>
     <title>Login | Film storage</title>
 </head>
-<body>
+<body id="login-body">
 <?php
 require_once('db.php');
 session_start();
@@ -37,11 +37,11 @@ if (isset($_POST['username'])) {
 
 } else {
     ?>
-    <form class="form" method="post" name="login">
-        <h1 class="login-title">Login</h1>
-        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true" required/>
-        <input type="password" class="login-input" name="password" placeholder="Password" required/>
-        <input type="submit" value="Login" name="submit" class="login-button"/>
+    <form class="login-form" method="post" name="login">
+        <h1 class="login-title">Login to see the application</h1>
+        <input type="text" class="login-input center" name="username" placeholder="Username" autofocus="true" required/>
+        <input type="password" class="login-input center" name="password" placeholder="Password" required/>
+        <input type="submit" value="Login" name="submit" class="login-button center"/>
         <p class="link"><a href="registration.php">New Registration</a></p>
     </form>
     <?php

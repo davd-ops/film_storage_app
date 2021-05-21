@@ -19,6 +19,8 @@ if (isset($_POST['title'])){
             'genre' => $_POST['genre']
         ]);
         $user = $statement->fetch();
+
+        die(json_encode([]));
     }
 
     if (isset($_POST['delete'])){
@@ -29,6 +31,7 @@ if (isset($_POST['title'])){
         ]);
         $user = $statement->fetch();
 
+        die(json_encode([]));
     }
 
     if (isset($_POST['select'])){
