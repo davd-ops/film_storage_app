@@ -2,7 +2,7 @@
 
 class ApiQuery
 {
-
+    //calling API, handling it and displaying the data
     function callApi($title)
     {
         $curl = curl_init();
@@ -33,11 +33,12 @@ class ApiQuery
             $json = json_decode($response);
             ?>
             <div class="container" id="movie_container"> <?php
-                if (isset($json->Search)){
+                if (isset($json->Search)) {
                     foreach ($json->Search as $item) {
                         if ($item->Type == "movie" || $item->Type == "series") {
                             ?>
-                            <div id="<?php echo $item->imdbID ?>" class="movie_item gallery" onClick="loadExtendedData(this.id);">
+                            <div id="<?php echo $item->imdbID ?>" class="movie_item gallery"
+                                 onClick="loadExtendedData(this.id);">
                                 <div class="gallery-item">
                                     <img class="center" src="<?php echo $item->Poster ?>">
                                     <h1 class="center"><?php echo $item->Title ?></h1>
@@ -53,5 +54,6 @@ class ApiQuery
         }
     }
 }
+
 ?>
 

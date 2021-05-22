@@ -15,29 +15,29 @@ require_once('db.php');
 
 
 // When form submitted, insert values into the database.
-
 if (isset($_REQUEST['username'])) {
     $username = $_REQUEST['username'];
-    $email    = $_REQUEST['email'];
+    $email = $_REQUEST['email'];
     $password = $_REQUEST['password'];
     $create_datetime = date("Y-m-d H:i:s");
     $sql = 'SELECT * FROM users WHERE username = :username';
     $statement = $pdo->prepare($sql);
     $statement->execute(['username' => $username]);
     $post = $statement->fetch();
-    if (!$post){
+    if (!$post) {
         $sql = 'INSERT INTO users(username,email,password,create_datetime) VALUES(:username, :email, :password, :create_datetime)';
         $statement = $pdo->prepare($sql);
         if (!empty($_REQUEST['username']) && !empty($_REQUEST['email']) && !empty($_REQUEST['password'])) {
-            if (strlen($_REQUEST['password']) < 8){
+            //If password is less than 9 chars long, don't sumbit, else submit
+            if (strlen($_REQUEST['password']) < 8) {
                 echo "
                 <div class='center_hor_and_ver'>
                 <h3>Password must be atleast 8 characters long.</h3><br/>
                 <p class='link'><a href='registration.php'>Click <u>here</u> to register again.</a></p>
                 </div>
              ";
-            }else {
-                $statement->execute(['username' => $username,'email' => $email,'password' => md5($password), 'create_datetime' => $create_datetime]);
+            } else {
+                $statement->execute(['username' => $username, 'email' => $email, 'password' => md5($password), 'create_datetime' => $create_datetime]);
                 echo "
                 <div class='center_hor_and_ver'>
                     <h3 class='link'>You are registered successfully.</h3><br/>
@@ -53,7 +53,7 @@ if (isset($_REQUEST['username'])) {
                 </div>
              ";
         }
-    }else{
+    } else {
         echo "
                 <div class='center_hor_and_ver'>
                 <h3 class='link'>This name is already taken.</h3><br/>

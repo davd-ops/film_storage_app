@@ -1,7 +1,7 @@
 <?php
 require_once("auth_session.php");
 require_once('db.php');
-require_once ("ApiQuery.php");
+require_once("ApiQuery.php");
 
 ?>
 <!doctype html>
@@ -54,6 +54,7 @@ require_once ("ApiQuery.php");
 </div>
 
 <?php
+//generating movies from API
 if (isset($_POST['title'])) {
     $title = str_replace(' ', '%20', $_POST['title']);
     $query = new ApiQuery();
@@ -62,7 +63,7 @@ if (isset($_POST['title'])) {
     <script>
         document.getElementById("body").style.overflowY = "visible";
     </script>
-    <?php
+<?php
 } else {
 ?>
     <div class="full-height-section">
@@ -75,11 +76,11 @@ if (isset($_POST['title'])) {
     <script>
         document.getElementById("body").style.overflowY = "hidden";
     </script>
-<?php
+    <?php
 }
 ?>
 <script>
-    if(document.querySelectorAll('.movie_item:not([style*="display:none"]):not([style*="display: none"])').length === 0){
+    if (document.querySelectorAll('.movie_item:not([style*="display:none"]):not([style*="display: none"])').length === 0) {
         document.getElementById("body").style.overflowY = "hidden";
     }
 </script>

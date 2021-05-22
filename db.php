@@ -1,11 +1,11 @@
 <?php
-$db_host = 'localhost';
-$db_user = 'root';
-$db_password = 'root';
-$db_db = 'film_storage_app';
+$db_host = 'sql.endora.cz:3317';
+$db_user = 'storageadmin';
+$db_password = '7Ec3uHUkuQgCEXd';
+$db_db = 'moviestorage';
 
 //set DNS
-$dns = 'mysql:host='.$db_host.';dbname='.$db_db;
+$dns = 'mysql:host=' . $db_host . ';dbname=' . $db_db;
 
 //create PDO instance
 $pdo = new PDO($dns, $db_user, $db_password);

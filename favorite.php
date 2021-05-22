@@ -54,7 +54,17 @@ require_once('db.php');
 </div>
 
 <div class="container" id="movie_container"> <?php
-    $sql = 'SELECT * FROM favorite_movies WHERE user = :user';
+    //select favorite movies for this user
+    $sql = 'SELECT imdbId, title, type, year, runtime, plot, actors, poster, director, genre
+                FROM favorite_movies AS fm
+                INNER JOIN
+                user_movies AS um
+                ON fm.imdbId = um.movieId
+                INNER JOIN
+                users AS u
+                ON um.user = u.username
+                WHERE user = :user
+                ';
     $statement = $pdo->prepare($sql);
     $statement->execute([
         'user' => $_SESSION['username']
@@ -63,9 +73,9 @@ require_once('db.php');
 
     $favorite_movies = array();
 
-    foreach ($posts as $post){
+    foreach ($posts as $post) {
         array_push($favorite_movies, [
-            'id' => $post->id,
+            'id' => $post->imdbId,
             'title' => $post->title,
             'type' => $post->type,
             'year' => $post->year,
@@ -79,7 +89,7 @@ require_once('db.php');
 
         if ($post->type == "movie" || $post->type == "series") {
             ?>
-            <div id="<?php echo $post->id ?>" class="movie_item gallery" onClick="createMovieInformation(
+            <div id="<?php echo $post->imdbId ?>" class="movie_item gallery" onClick="createMovieInformation(
                     `<?php echo $post->title; ?>`,
                     `<?php echo $post->type; ?>`,
                     `<?php echo $post->year; ?>`,
@@ -89,7 +99,7 @@ require_once('db.php');
                     `<?php echo $post->poster; ?>`,
                     `<?php echo $post->director; ?>`,
                     `<?php echo $post->genre; ?>`
-            );">
+                    );">
                 <div class="gallery-item">
                     <img class="center" src="<?php echo $post->poster ?>">
                     <h1 class="center movie_title"><?php echo $post->title ?></h1>
@@ -101,7 +111,7 @@ require_once('db.php');
     ?> </div>
 
 <script>
-    if(document.querySelectorAll('.movie_item').length <= 4){
+    if (document.querySelectorAll('.movie_item').length <= 4) {
         document.getElementById("movie_container").style.marginBottom = "140%";
         document.getElementById("body").style.overflow = "hidden";
     } else {

@@ -3,8 +3,8 @@ require_once("auth_session.php");
 require_once("db.php");
 ?>
 
-<!doctype html>
-<html lang="en">
+    <!doctype html>
+    <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -28,18 +28,18 @@ require_once("db.php");
     </div>
 </div>
 
-    <div class="profile_forms">
-        <form action="" method="post" id="change_name">
-            <h1>Current name: <br><?php echo $_SESSION['username']; ?></h1>
-            <h1>New name: <br><input name="new_name" type="text" required></h1>
-            <input class="center submit_btn" type="submit" name="submit_name" value="Change name">
-        </form>
-        <form action="" method="post" id="change_password">
-            <h1 class="">Current password: <br><input name="old_pass" type="password"" required></h1>
-            <h1 class="">New password: <br><input name="new_pass" type="password"" required></h1>
-            <input class="center submit_btn" type="submit" name="submit_pass" value="Change password">
-        </form>
-    </div>
+<div class="profile_forms">
+    <form action="" method="post" id="change_name">
+        <h1>Current name: <br><?php echo $_SESSION['username']; ?></h1>
+        <h1>New name: <br><input name="new_name" type="text" required></h1>
+        <input class="center submit_btn" type="submit" name="submit_name" value="Change name">
+    </form>
+    <form action="" method="post" id="change_password">
+        <h1 class="">Current password: <br><input name="old_pass" type="password"" required></h1>
+        <h1 class="">New password: <br><input name="new_pass" type="password"" required></h1>
+        <input class="center submit_btn" type="submit" name="submit_pass" value="Change password">
+    </form>
+</div>
 
 <form action="" method="post" class="contact_us">
     <h1 class="center_text" id="contact_us_h1">Contact us</h1>
@@ -50,7 +50,8 @@ require_once("db.php");
 </form>
 </body>
 <?php
-if (isset($_POST['subject']) && isset($_POST['guest_email'])){
+//send email to chosen email address
+if (isset($_POST['subject']) && isset($_POST['guest_email'])) {
     $to = 'davidpsencik01@gmail.com';
     $subject = $_POST['subject'];
     $message = $_POST['message'];
@@ -62,15 +63,24 @@ if (isset($_POST['subject']) && isset($_POST['guest_email'])){
 
     mail($to, $subject, $message, $headers);
     echo "Úspěšně odesláno!";
-} else if (isset($_POST['new_name'])){
+//set name to new name
+} else if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
+    //updating the record of user's name in favorite movies database
+    $sql = 'UPDATE user_movies SET user = :new_username WHERE user = :old_username';
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['new_username' => $new_name, 'old_username' => $_SESSION['username']]);
+    $user = $statement->fetch();
+
+    //updating user's name
     $sql = 'UPDATE users SET username = :new_username WHERE username = :old_username';
     $statement = $pdo->prepare($sql);
     $statement->execute(['new_username' => $new_name, 'old_username' => $_SESSION['username']]);
     $user = $statement->fetch();
-    $_SESSION['username']=$new_name;
+    $_SESSION['username'] = $new_name;
     header("Location: profile.php");
-} else if (isset($_POST['old_pass']) && isset($_POST['new_pass'])){
+//set old pass to new pass
+} else if (isset($_POST['old_pass']) && isset($_POST['new_pass'])) {
     $new_pass = $_POST['new_pass'];
     $old_pass = $_POST['old_pass'];
     $sql = 'UPDATE users SET password = :new_password WHERE password = :old_password && username = :username';
