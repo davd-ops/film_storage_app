@@ -161,10 +161,8 @@ function deleteFromFavorite() {
             star2.style.display = "none";
             for (let i = 0; i < favorite_movies.length; i++) {
                 if (favorite_movies[i].title == title.innerText) {
-                    console.log(favorite_movies);
                     deleteFromDatabase(favorite_movies[i].id);
                     favorite_movies.splice(i, 1);
-                    console.log(favorite_movies);
                     const title = document.getElementById("title").innerText;
                     const fav_movies = document.querySelectorAll(".movie_title");
                     for (i = 0; i < fav_movies.length; i++) {
@@ -175,6 +173,7 @@ function deleteFromFavorite() {
                             if (document.querySelectorAll('.movie_item:not([style*="display:none"]):not([style*="display: none"])').length <= 4) {
                                 document.getElementById("movie_container").style.marginBottom = "100%";
                                 document.getElementById("body").style.overflow = "hidden";
+                                window.scrollTo(0, 0);
                             }
                         }
                     }
