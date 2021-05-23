@@ -33,17 +33,11 @@ if (isset($_POST['title'])) {
 
 //delete favorite movie from array
 if (isset($_POST['delete'])) {
-    $sql = 'DELETE FROM favorite_movies WHERE imdbId = :imdbId';
+    $sql = 'DELETE FROM user_movies WHERE movieId = :movieId AND user = :user';
     $statement = $pdo->prepare($sql);
     $statement->execute([
-        'imdbId' => $_POST['id']
-    ]);
-    $user = $statement->fetch();
-
-    $sql = 'DELETE FROM user_movies WHERE movieId = :movieId';
-    $statement = $pdo->prepare($sql);
-    $statement->execute([
-        'movieId' => $_POST['id']
+        'movieId' => $_POST['id'],
+        'user' => $_SESSION['username']
     ]);
     $user = $statement->fetch();
 

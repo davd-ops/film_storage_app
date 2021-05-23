@@ -210,6 +210,7 @@ async function selectFromDatabase() {
     formData.append('select', 1);
 
     const response = await fetch('process_php.php', {method: 'POST', body: formData});
+    console.log(await response);
     const ajaxResponseJson = await response.json();
     //checkIsFavorite();
     return ajaxResponseJson;
