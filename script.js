@@ -1,6 +1,7 @@
 let movie_array = [];
 let favorite_movies = [];
 let ajaxRequest;
+updateFavoriteMovies();
 
 //fetching data from imdb API
 function fetchApi(_id) {
@@ -68,6 +69,10 @@ function loadExtendedData(_id) {
     }
 }
 
+async function updateFavoriteMovies(){
+    favorite_movies = await selectFromDatabase();
+}
+
 //creating view with extended informations
 function createMovieInformation(_title, _type, _year, _runtime, _plot, _actors, _poster, _director, _genre) {
     const movie_view = document.getElementById("movie_view");
@@ -94,7 +99,6 @@ function createMovieInformation(_title, _type, _year, _runtime, _plot, _actors, 
     director.innerHTML = "<span class='darker_text'>Directed by: </span><b>" + _director + "</b>";
     genre.innerHTML = "<span class='darker_text'>Genres: </span><b>" + _genre + "</b>";
     checkIsFavorite();
-    selectFromDatabase();
 }
 
 //hiding extended view
@@ -116,9 +120,6 @@ async function makeFavorite() {
     const star2 = document.getElementById("star2");
     const title = document.getElementById("title");
     const year = document.getElementById("year");
-
-    checkIsFavorite();
-    favorite_movies = await selectFromDatabase();
 
     for (let i = 0; i < movie_array.length; i++) {
         if (movie_array[i].Title === title.innerText && movie_array[i].Year === year.innerText) {
@@ -142,6 +143,7 @@ async function makeFavorite() {
                 star1.style.display = "block";
                 star2.style.display = "none";
                 deleteFromDatabase(movie_array[i].id);
+                favorite_movies.splice(i, 1);
             }
         }
     }
@@ -159,7 +161,10 @@ function deleteFromFavorite() {
             star2.style.display = "none";
             for (let i = 0; i < favorite_movies.length; i++) {
                 if (favorite_movies[i].title == title.innerText) {
+                    console.log(favorite_movies);
                     deleteFromDatabase(favorite_movies[i].id);
+                    favorite_movies.splice(i, 1);
+                    console.log(favorite_movies);
                     const title = document.getElementById("title").innerText;
                     const fav_movies = document.querySelectorAll(".movie_title");
                     for (i = 0; i < fav_movies.length; i++) {
@@ -186,7 +191,7 @@ async function checkIsFavorite() {
     const title = document.getElementById("title");
     const year = document.getElementById("year");
 
-    favorite_movies = await selectFromDatabase();
+    //updateFavoriteMovies();
     const is_favorite = () => {
         for (let i = 0; i < favorite_movies.length; i++) {
             if (favorite_movies[i].title === title.innerText && favorite_movies[i].year === year.innerText) {
@@ -210,9 +215,7 @@ async function selectFromDatabase() {
     formData.append('select', 1);
 
     const response = await fetch('process_php.php', {method: 'POST', body: formData});
-    console.log(await response);
     const ajaxResponseJson = await response.json();
-    //checkIsFavorite();
     return ajaxResponseJson;
 }
 
@@ -232,7 +235,6 @@ async function insertIntoDatabase(_id, _title, _type, _year, _runtime, _plot, _a
 
 
     const response = await fetch('process_php.php', {method: 'POST', body: formData});
-    checkIsFavorite();
 }
 
 //deleting favorite movies from database
@@ -244,6 +246,5 @@ async function deleteFromDatabase(_id) {
 
     const response = await fetch('process_php.php', {method: 'POST', body: formData});
     ajaxResponseJson = await response.json();
-    checkIsFavorite();
 }
 

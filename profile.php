@@ -67,7 +67,7 @@ if (isset($_POST['subject']) && isset($_POST['guest_email'])) {
 } else if (isset($_POST['new_name'])) {
     $new_name = $_POST['new_name'];
     //updating the record of user's name in favorite movies database
-    $sql = 'UPDATE user_movies SET user = :new_username WHERE user = :old_username';
+    $sql = 'UPDATE favorite_movies SET user = :new_username WHERE user = :old_username';
     $statement = $pdo->prepare($sql);
     $statement->execute(['new_username' => $new_name, 'old_username' => $_SESSION['username']]);
     $user = $statement->fetch();

@@ -4,7 +4,7 @@ require_once('db.php');
 
 //inserting favorite movies into database
 if (isset($_POST['title'])) {
-    $sql = 'INSERT INTO favorite_movies (imdbId, title, type, year, runtime, plot, actors, poster, director, genre) VALUES (:imdbId, :title, :type, :year, :runtime, :plot, :actors, :poster, :director, :genre)';
+    $sql = 'INSERT INTO favorite_movies (imdbId, title, type, year, runtime, plot, actors, poster, director, genre, user) VALUES (:imdbId, :title, :type, :year, :runtime, :plot, :actors, :poster, :director, :genre, :user)';
     $statement = $pdo->prepare($sql);
     $statement->execute([
         'imdbId' => $_POST['id'],
@@ -16,15 +16,8 @@ if (isset($_POST['title'])) {
         'actors' => $_POST['actors'],
         'poster' => $_POST['poster'],
         'director' => $_POST['director'],
-        'genre' => $_POST['genre']
-    ]);
-    $user = $statement->fetch();
-
-    $sql = 'INSERT INTO user_movies (user, movieId) VALUES (:user, :movieId)';
-    $statement = $pdo->prepare($sql);
-    $statement->execute([
-        'user' => $_SESSION['username'],
-        'movieId' => $_POST['id']
+        'genre' => $_POST['genre'],
+        'user' => $_SESSION['username']
     ]);
     $user = $statement->fetch();
 
@@ -33,10 +26,10 @@ if (isset($_POST['title'])) {
 
 //delete favorite movie from array
 if (isset($_POST['delete'])) {
-    $sql = 'DELETE FROM user_movies WHERE movieId = :movieId AND user = :user';
+    $sql = 'DELETE FROM favorite_movies WHERE imdbId = :imdbId AND user = :user';
     $statement = $pdo->prepare($sql);
     $statement->execute([
-        'movieId' => $_POST['id'],
+        'imdbId' => $_POST['id'],
         'user' => $_SESSION['username']
     ]);
     $user = $statement->fetch();
@@ -46,16 +39,7 @@ if (isset($_POST['delete'])) {
 
 //creating array with informations about favorite movies and sending to javascript
 if (isset($_POST['select'])) {
-    $sql = 'SELECT imdbId, title, type, year, runtime, plot, actors, poster, director, genre
-                FROM favorite_movies AS fm
-                INNER JOIN
-                user_movies AS um
-                ON fm.imdbId = um.movieId
-                INNER JOIN
-                users AS u
-                ON um.user = u.username
-                WHERE user = :user
-                ';
+    $sql = 'SELECT imdbId, title, type, year, runtime, plot, actors, poster, director, genre FROM favorite_movies WHERE user = :user';
     $statement = $pdo->prepare($sql);
     $statement->execute([
         'user' => $_SESSION['username']

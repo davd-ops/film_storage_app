@@ -55,16 +55,7 @@ require_once('db.php');
 
 <div class="container" id="movie_container"> <?php
     //select favorite movies for this user
-    $sql = 'SELECT imdbId, title, type, year, runtime, plot, actors, poster, director, genre
-                FROM favorite_movies AS fm
-                INNER JOIN
-                user_movies AS um
-                ON fm.imdbId = um.movieId
-                INNER JOIN
-                users AS u
-                ON um.user = u.username
-                WHERE user = :user
-                ';
+    $sql = 'SELECT imdbId, title, type, year, runtime, plot, actors, poster, director, genre FROM favorite_movies WHERE user = :user';
     $statement = $pdo->prepare($sql);
     $statement->execute([
         'user' => $_SESSION['username']
