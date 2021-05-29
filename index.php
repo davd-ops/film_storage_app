@@ -13,7 +13,8 @@ require_once("ApiQuery.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" type="text/javascript"></script>
-    <title>Film storage</title>
+    <link rel="shortcut icon" href="images/video-player.png" type="image/x-icon">
+    <title>Movie storage</title>
 </head>
 <body id="body">
 
@@ -22,7 +23,7 @@ require_once("ApiQuery.php");
 <div class="container2">
     <p class="lead">You are logged in as <?php echo $_SESSION['username']; ?></p>
     <div class="header-bar">
-        <h1 class="logo">C</h1>
+        <h1 class="logo">Ms</h1>
         <ul class="slider-menu">
             <a href="index.php">Search</a>
             <a href="profile.php">Profile</a>

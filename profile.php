@@ -12,13 +12,14 @@ require_once("db.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" type="text/javascript"></script>
-    <title>Profile | Film storage</title>
+    <link rel="shortcut icon" href="images/video-player.png" type="image/x-icon">
+    <title>Profile | Movie storage</title>
 </head>
 <body id="profile_body">
 <div class="container2">
     <p class="lead">You are logged in as <?php echo $_SESSION['username']; ?></p>
     <div class="header-bar">
-        <h1 class="logo">C</h1>
+        <h1 class="logo">Ms</h1>
         <ul class="slider-menu">
             <a href="index.php">Search</a>
             <a href="profile.php">Profile</a>
@@ -45,7 +46,8 @@ require_once("db.php");
     <h1 class="center_text" id="contact_us_h1">Contact us</h1>
     <h1>Subject: <input name="subject" type="text"></h1>
     <h1>Your email: <input name="guest_email" type="email"></h1>
-    <h1>Your message: <input name="message" type="text"></h1>
+    <h1><label for="message">Your message: </label></h1>
+    <h1><textarea name="message"></textarea></h1>
     <input class="center" id="contact_submit" type="submit" name="submit" value="Submit">
 </form>
 </body>

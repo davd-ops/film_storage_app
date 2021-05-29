@@ -40,7 +40,7 @@ class ApiQuery
                             <div id="<?php echo $item->imdbID ?>" class="movie_item gallery"
                                  onClick="loadExtendedData(this.id);">
                                 <div class="gallery-item">
-                                    <img class="center" src="<?php echo $item->Poster ?>">
+                                    <img class="center poster_image" src="<?php echo $item->Poster ?>">
                                     <h1 class="center"><?php echo $item->Title ?></h1>
                                 </div>
                             </div>
@@ -50,7 +50,22 @@ class ApiQuery
                 } else {
                     ?><h1 class="center doesnt_exist"><?php echo "This movie doesn't exist"; ?></h1><?php
                 }
-                ?> </div> <?php
+                ?> </div>
+
+            <script>
+                const images = document.querySelectorAll(".poster_image");
+                for (let i = 0; i < images.length; i++){
+                    if (images[i].src === "http://localhost/film_storage_app/N/A" || images[i].src === "http://moviestorage.8u.cz/N/A") {
+                        images[i].parentElement.parentElement.style.display = "none";
+                    }
+                }
+                if (document.querySelectorAll('.movie_item:not([style*="display:none"]):not([style*="display: none"])').length <= 4) {
+                    document.getElementById("movie_container").style.marginBottom = "100%";
+                    document.getElementById("body").style.overflow = "hidden";
+                }
+            </script>
+
+            <?php
         }
     }
 }

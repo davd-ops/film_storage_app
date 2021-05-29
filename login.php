@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" type="text/javascript"></script>
-    <title>Login | Film storage</title>
+    <link rel="shortcut icon" href="images/video-player.png" type="image/x-icon">
+    <title>Login | Movie storage</title>
 </head>
 <body id="login-body">
 <?php
 require_once('db.php');
-session_start();
-// When form submitted, check and create user session.
+
+// When form submitted, check if valid and create user session.
 if (isset($_POST['username'])) {
     $username = $_REQUEST['username'];
     $password = $_REQUEST['password'];
@@ -23,6 +24,7 @@ if (isset($_POST['username'])) {
     $user = $statement->fetch();
 
     if (isset($user->username)) {
+        session_start();
         $_SESSION['username'] = $username;
         // Redirect to user dashboard page
         header("Location: index.php");

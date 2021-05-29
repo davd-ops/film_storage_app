@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" type="text/javascript"></script>
-    <title>Registration | Film storage</title>
+    <link rel="shortcut icon" href="images/video-player.png" type="image/x-icon">
+    <title>Registration | Movie storage</title>
 </head>
 <body id="registration-body">
 <?php
@@ -28,11 +29,18 @@ if (isset($_REQUEST['username'])) {
         $sql = 'INSERT INTO users(username,email,password,create_datetime) VALUES(:username, :email, :password, :create_datetime)';
         $statement = $pdo->prepare($sql);
         if (!empty($_REQUEST['username']) && !empty($_REQUEST['email']) && !empty($_REQUEST['password'])) {
-            //If password is less than 9 chars long, don't sumbit, else submit
+            //If password is less than 8 chars long, don't sumbit, else submit
             if (strlen($_REQUEST['password']) < 8) {
                 echo "
                 <div class='center_hor_and_ver'>
-                <h3>Password must be atleast 8 characters long.</h3><br/>
+                <h3 class='link'>Password must be atleast 8 characters long.</h3><br/>
+                <p class='link'><a href='registration.php'>Click <u>here</u> to register again.</a></p>
+                </div>
+             ";
+            } else if (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
+                echo "
+                <div class='center_hor_and_ver'>
+                <h3 class='link'>Invalid email address.</h3><br/>
                 <p class='link'><a href='registration.php'>Click <u>here</u> to register again.</a></p>
                 </div>
              ";
