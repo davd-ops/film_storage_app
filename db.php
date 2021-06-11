@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 //LOCALHOST
 $db_host = 'localhost';
 $db_user = 'root';
@@ -9,15 +9,6 @@ $db_db = 'film_storage_app';
 
 //set DSN
 $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_db;
-
-*/
-
-
-$db_host = 'sql.endora.cz';
-$db_port = '3310';
-$db_user = 'moviestorage';
-$db_password = 'Moviestorage123';
-$db_db = 'moviestorage';
 
 //set DSN
 $dsn = 'mysql:host=' . $db_host;
